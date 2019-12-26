@@ -9,12 +9,13 @@ class hero {
     this.bulltes = [];
     this.times = 0;
     this.render();
-    this.AddEventMove();
+    this.addEventMove(); 
+    this.createBullets();
   }
   render() {
     ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
   }
-  AddEventMove() {
+  addEventMove() {
     canvas.addEventListener("touchmove", (e) => {
       const { clientX, clientY } = e.changedTouches[0];
       this.x = clientX - this.width / 2;
@@ -26,17 +27,17 @@ class hero {
     this.render();
     this.createBullets();
     this.shoot();
-    
+
   }
   createBullets() {
     this.times++;
     if (this.times % 30 === 0) {
-      this.bulltes.push(new Bullet(this.x+this.width/2, this.y));
+      this.bulltes.push(new Bullet(this.x + this.width / 2, this.y));
       this.times = 0;
     }
   }
   shoot() {
-    this.bulltes.forEach(v=>{
+    this.bulltes.forEach(v => {
       v.update();
     })
   }
